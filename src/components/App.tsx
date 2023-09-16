@@ -3,41 +3,53 @@ import { useState, useEffect } from 'react'
 import '../styles/styles.css'
 
 export interface TypingProps {
-  text: string
+  text: string[]
   speed: number
   stroke: '_' | '|'
   textClassName: string
   strokeClassName: string
   repeat: boolean
-  repeatValue: number
 }
 
-const Typing = ({ text, speed, stroke, textClassName, strokeClassName, repeat, repeatValue }: TypingProps) => {
+const Component = ({ text, speed, stroke, textClassName, strokeClassName, repeat }: TypingProps) => {
+  const [step, setStep] = useState('forward')
   const [alphabet, setAlphabet] = useState('')
   const [index, setIndex] = useState(0)
-  const [repeatCount, setRepeatCount] = useState(0)
+  const [wordIndex, setWordIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (index < text.length) {
-        setAlphabet((prev) => prev + text[index])
-        setIndex((prev) => prev + 1)
-      } else if (repeat === true) {
-        setAlphabet('')
-        setIndex(0)
-      } else if (repeat === false && repeatCount < repeatValue - 1) {
-        setAlphabet('')
-        setIndex(0)
-        setRepeatCount((prev) => prev + 1)
-      } else {
-        clearInterval(interval)
+      if (wordIndex < text.length) {
+        if (step === 'forward') {
+          if (index < text[wordIndex].length) {
+            setAlphabet((prev) => prev + text[wordIndex][index])
+            setIndex((prev) => prev + 1)
+          } else {
+            setStep('backward')
+          }
+        } else if (step === 'backward') {
+          if (index === 0) {
+            setStep('forward')
+            setWordIndex((prev) => prev + 1)
+          } else {
+            if (wordIndex === text.length - 1) {
+              if (!repeat) {
+                return
+              }
+              setStep('forward')
+              setWordIndex(0)
+            }
+            setAlphabet((prev) => prev.slice(0, prev.length - 1))
+            setIndex((prev) => prev - 1)
+          }
+        }
       }
     }, speed)
 
     return () => {
       clearInterval(interval)
     }
-  }, [text, speed, index, repeat, repeatCount, repeatValue])
+  }, [text, speed, index, repeat, step, wordIndex])
 
   return (
     <>
@@ -48,14 +60,13 @@ const Typing = ({ text, speed, stroke, textClassName, strokeClassName, repeat, r
   )
 }
 
-Typing.defaultProps = {
-  text: '',
+Component.defaultProps = {
+  text: [],
   speed: 1000,
   stroke: '_',
   textClassName: '',
   strokeClassName: '',
   repeat: true,
-  repeatValue: 0,
 }
 
-export default Typing
+export default Component

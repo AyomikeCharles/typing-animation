@@ -7,6 +7,6 @@ import { Typing } from '../src'
 
 describe('Common render', () => {
   it('renders without crashing', () => {
-    render(<Typing text='hello world' />)
+    render(<Typing text={['hello', 'world']} />)
   })
 })
