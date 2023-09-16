@@ -1,5 +1,5 @@
 {
-  "name": "typing",
+  "name": "react-typing-animate",
   "version": "1.0.0",
   "description": "this is a simple react component use for text typing animation",
   "main": "./dist/cjs/index.js",
