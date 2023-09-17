@@ -1,4 +1,4 @@
-# my-react-typescript-package
+# react-typing-animate
 
 [![NPM version][npm-image]][npm-url]
 [![Build][github-build]][github-build-url]
@@ -49,13 +49,13 @@ root.render(
 
 ## Props:
 
-| Syntax          | Types       | Default     |
+| Syntax          | Types       | Default       |
 | :---            |    :----:   |          ---: |
 | text            | string[]    | []            |
 | speed           | number      | 500           |
-| cursor          | '|' or '_'  | "_"           |
-| textClassName   | string      | ''            |
-| cursorClassName | string      | ''            |
+| cursor          | string      |  "_"          |
+| textClassName   | string      |               |
+| cursorClassName | string      |               |
 | repeat          | boolean     | true          |
 
 ## Description:
@@ -67,7 +67,7 @@ this is an array of strings that your want  to animate. e.g text={['hello', 'wor
 this is the speed at which you want to animate, 1000 represents 1 seconds. e.g speed={400}
 
 ## cursor:
-this is a blinking cursor at the front of the text, it accepts onlt two strings, either an aunderstrike ( _ ) or a Pipe symbol ( | ). eg cursor='_' or cursor='|'
+this is a blinking cursor at the front of the text, it accepts onlt two strings, either an aunderstrike ( _ ) or a Pipe symbol ( | ). e.g cursor = '_' or cursor = '|'
 
 ## textClassName:
 this props is use to give the text a class name
@@ -77,7 +77,7 @@ this props is use to give the cursor a class name
 
 
 ## repeat:
-this props is use to make the animation play once or repeat eg repeat={true}
+this props is use to make the animation play once or repeat e.g repeat= {true}
 
 
 

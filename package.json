@@ -1,6 +1,6 @@
 {
   "name": "react-typing-animate",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "this is a simple react component use for text typing animation",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -52,6 +52,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.1",
+    "source-map-loader": "^4.0.1",
     "ts-jest": "^29.1.1"
   },
   "peerDependencies": {
