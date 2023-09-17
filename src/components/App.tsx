@@ -2,16 +2,16 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import '../styles/styles.css'
 
-export interface TypingProps {
+interface TypingProps {
   text: string[]
   speed: number
-  stroke: '_' | '|'
+  cursor: '_' | '|'
   textClassName: string
   strokeClassName: string
   repeat: boolean
 }
 
-const Component = ({ text, speed, stroke, textClassName, strokeClassName, repeat }: TypingProps) => {
+const Typing = ({ text, speed, cursor, textClassName, strokeClassName, repeat }: TypingProps) => {
   const [step, setStep] = useState('forward')
   const [alphabet, setAlphabet] = useState('')
   const [index, setIndex] = useState(0)
@@ -54,19 +54,19 @@ const Component = ({ text, speed, stroke, textClassName, strokeClassName, repeat
   return (
     <>
       <div className={textClassName}>
-        {alphabet} <span className={`${strokeClassName} fadeInAndOut`}>{stroke}</span>
+        {alphabet} <span className={`${strokeClassName} fadeInAndOut`}>{cursor}</span>
       </div>
     </>
   )
 }
 
-Component.defaultProps = {
+Typing.defaultProps = {
   text: [],
-  speed: 1000,
-  stroke: '_',
+  speed: 500,
+  cursor: '_',
   textClassName: '',
   strokeClassName: '',
   repeat: true,
 }
 
-export default Component
+export default Typing

@@ -1,12 +1,15 @@
 {
   "name": "react-typing-animate",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "this is a simple react component use for text typing animation",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
+    "clean": "rimraf dist/",
+    "copy-files:esm": "copyfiles -u 1 src/**/*.css dist/cjs",
+    "copy-files:cjs": "copyfiles -u 1 src/**/*.css dist/esm",
+    "build": " npm run clean && npm run build:esm && npm run copy-files:esm && npm run build:cjs && npm run copy-files:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "test": "jest --config jestconfig.json",
@@ -29,7 +32,7 @@
   "dependencies": {
     "@types/react": "^18.2.21",
     "jest-transform-css": "^6.0.1",
-    "react": "^18.2.0",
+    "react": ">=18",
     "react-dom": "^18.2.0",
     "typescript": "^5.2.2"
   },
@@ -38,6 +41,7 @@
     "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
@@ -47,6 +51,7 @@
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.0.3",
+    "rimraf": "^5.0.1",
     "ts-jest": "^29.1.1"
   },
   "peerDependencies": {
