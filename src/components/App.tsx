@@ -7,11 +7,11 @@ interface TypingProps {
   speed: number
   cursor: '_' | '|'
   textClassName: string
-  strokeClassName: string
+  cursorClassName: string
   repeat: boolean
 }
 
-const Typing = ({ text, speed, cursor, textClassName, strokeClassName, repeat }: TypingProps) => {
+const Typing = ({ text, speed, cursor, textClassName, cursorClassName, repeat }: TypingProps) => {
   const [step, setStep] = useState('forward')
   const [alphabet, setAlphabet] = useState('')
   const [index, setIndex] = useState(0)
@@ -25,20 +25,22 @@ const Typing = ({ text, speed, cursor, textClassName, strokeClassName, repeat }:
             setAlphabet((prev) => prev + text[wordIndex][index])
             setIndex((prev) => prev + 1)
           } else {
+            if (wordIndex === text.length - 1 && index === text[wordIndex].length && !repeat) {
+              clearInterval(interval)
+              return
+            }
             setStep('backward')
           }
         } else if (step === 'backward') {
           if (index === 0) {
-            setStep('forward')
-            setWordIndex((prev) => prev + 1)
-          } else {
             if (wordIndex === text.length - 1) {
-              if (!repeat) {
-                return
-              }
               setStep('forward')
               setWordIndex(0)
+            } else {
+              setStep('forward')
+              setWordIndex((prev) => prev + 1)
             }
+          } else {
             setAlphabet((prev) => prev.slice(0, prev.length - 1))
             setIndex((prev) => prev - 1)
           }
@@ -54,7 +56,7 @@ const Typing = ({ text, speed, cursor, textClassName, strokeClassName, repeat }:
   return (
     <>
       <div className={textClassName}>
-        {alphabet} <span className={`${strokeClassName} fadeInAndOut`}>{cursor}</span>
+        {alphabet} <span className={`${cursorClassName} fadeInAndOut`}>{cursor}</span>
       </div>
     </>
   )
@@ -65,8 +67,9 @@ Typing.defaultProps = {
   speed: 500,
   cursor: '_',
   textClassName: '',
-  strokeClassName: '',
+  cursorClassName: '',
   repeat: true,
+  repeatValue: 0,
 }
 
 export default Typing

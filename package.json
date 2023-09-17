@@ -1,6 +1,6 @@
 {
   "name": "react-typing-animate",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "this is a simple react component use for text typing animation",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
