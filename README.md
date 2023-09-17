@@ -47,6 +47,40 @@ root.render(
 
 ```
 
+## Props:
+
+| Syntax          | Types       | Default     |
+| :---            |    :----:   |          ---: |
+| text            | string[]    | []            |
+| speed           | number      | 500           |
+| cursor          | '|' or '_'  | "_"           |
+| textClassName   | string      | ''            |
+| cursorClassName | string      | ''            |
+| repeat          | boolean     | true          |
+
+## Description:
+
+## text:
+this is an array of strings that your want  to animate. e.g text={['hello', 'world']}
+
+## speed:
+this is the speed at which you want to animate, 1000 represents 1 seconds. e.g speed={400}
+
+## cursor:
+this is a blinking cursor at the front of the text, it accepts onlt two strings, either an aunderstrike ( _ ) or a Pipe symbol ( | ). eg cursor='_' or cursor='|'
+
+## textClassName:
+this props is use to give the text a class name
+
+## cursorClassName:
+this props is use to give the cursor a class name
+
+
+## repeat:
+this props is use to make the animation play once or repeat eg repeat={true}
+
+
+
 [npm-url]: https://www.npmjs.com/package/react-typing-animate
 [npm-image]: https://img.shields.io/npm/v/react-typing-animate
 [github-license]: https://img.shields.io/github/license/AyomikeCharles/typing-animation

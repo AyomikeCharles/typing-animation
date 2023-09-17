@@ -69,7 +69,6 @@ Typing.defaultProps = {
   textClassName: '',
   cursorClassName: '',
   repeat: true,
-  repeatValue: 0,
 }
 
 export default Typing
